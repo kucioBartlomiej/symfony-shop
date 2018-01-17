@@ -1,0 +1,15 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block ContentAdmin %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="pull-right btn btn-primary" href="{{ path('admin_order_change_status', {'id': order.id}) }}">Changes Status</a>
+            <hr>
+            {{ dump(order) }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,5 @@
+services:
+
+    AppBundle\User\UserHandler:
+        autowire: true
+        public: true

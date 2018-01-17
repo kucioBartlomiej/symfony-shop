@@ -1,0 +1,5 @@
+services:
+
+    AppBundle\Product\ProductHandler:
+        public: true
+        autowire: true

@@ -1,0 +1,14 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block ContentAdmin %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'} }) }}
+            {{form_widget(form)}}
+            <button class="button btn btn-primary btn-submt-form" type="submit">Update</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

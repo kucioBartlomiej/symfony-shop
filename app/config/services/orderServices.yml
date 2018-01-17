@@ -1,0 +1,9 @@
+services:
+
+    AppBundle\Order\OrderFactory:
+        public: true
+        autowire: true
+
+    AppBundle\Order\OrderHandler:
+        public: true
+        autowire: true

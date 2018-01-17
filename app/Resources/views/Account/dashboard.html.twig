@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block Content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <ul>
+                    <li><a href="{{ path('fos_user_change_password') }}">change password</a></li>
+                    <li><a href="{{ path('account_order_list') }}">orders</a></li>
+                    <li><a href="{{ path('account_delivery_data') }}">delivery information</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                {{ dump(user) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+services:
+
+    AppBundle\Mailer\MailerService:
+        autowire: true
+        arguments: ['%mailer_user%']

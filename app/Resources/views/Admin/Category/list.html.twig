@@ -1,0 +1,126 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block ContentAdmin %}
+    <div class="container">
+        <div class="row"">
+            <div class="col-md-12">
+                <a href="{{ path('admin_category_create') }}" class="btn btn-primary">Create Category</a>
+                {% for category in categories %}
+
+                    <div id="accordion{{category.id}}" class="first-level-categories" role="tablist" aria-multiselectable="true">
+
+                        <div class="input-group-btn inline category-block">
+
+                            <a class="category-link-name" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{category.id}}" aria-expanded="false" aria-controls="collapse{{category.id}}">
+                                <span>{{ category.name }}</span>
+                            </a>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('admin_category_create', {'id': category.id}) }}">Add Subcategry</a></li>
+                                    <li><a href="{{ path('admin_category_edit', {'id': category.id}) }}">Edit Category</a></li>
+                                    <li><a href="{{ path('admin_category_delete', {'id': category.id}) }}">Delete Category</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="collapse{{category.id}}" class="collapse sub1" role="tabpanel">
+
+                            {% for subcategory in category.children %}
+
+                                <div id="accordion{{subcategory.id}}" class="second-level-categories" role="tablist" aria-multiselectable="true">
+
+                                    <div class="input-group-btn inline category-block">
+
+                                        <a class="category-link-name" role="button" data-toggle="collapse" data-parent="#accordion{{subcategory.id}}" href="#collapse{{subcategory.id}}" aria-expanded="false" aria-controls="collapse{{subcategory.id}}">
+                                            <span>{{ subcategory.name }}</span>
+                                        </a>
+
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('admin_category_create', {'id': subcategory.id}) }}">Add Subcategory</a></li>
+                                                <li><a href="{{ path('admin_category_edit', {'id': subcategory.id}) }}">Edit Category</a></li>
+                                                <li><a href="{{ path('admin_category_delete', {'id': subcategory.id}) }}">Delete Category</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div id="collapse{{subcategory.id}}" class="collapse sub2" role="tabpanel">
+
+                                        {% for thirdLevel in subcategory.children %}
+
+                                            <div id="accordion{{thirdLevel.id}}" class="third-level-categories" role="tablist" aria-multiselectable="true">
+
+
+                                                <div class="input-group-btn inline category-block">
+
+                                                    <a class="category-link-name" role="button" data-toggle="collapse" data-parent="#accordion{{thirdLevel.id}}" href="#collapse{{thirdLevel.id}}" aria-expanded="false" aria-controls="collapse{{thirdLevel.id}}">
+                                                        <span>{{ thirdLevel.name }}</span>
+                                                    </a>
+
+                                                    <div class="btn-group" role="group">
+                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="{{ path('admin_category_create', {'id': thirdLevel.id}) }}">Add Subcategory</a></li>
+                                                            <li><a href="{{ path('admin_category_edit', {'id': thirdLevel.id}) }}">Edit Category</a></li>
+                                                            <li><a href="{{ path('admin_category_delete', {'id': thirdLevel.id}) }}">Delete Category</a></li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                                <div id="collapse{{thirdLevel.id}}" class="collapse sub3" role="tabpanel">
+                                                    {% for fourthLevel in thirdLevel.children %}
+                                                        <div class="fourth-level-categories">
+
+                                                            <div class="input-group-btn inline category-block">
+
+                                                                <a class="category-link-name last-level">{{ fourthLevel.name }}</a>
+
+                                                                <div class="btn-group" role="group">
+                                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li><a href="{{ path('admin_category_edit', {'id': fourthLevel.id}) }}">Edit Category</a></li>
+                                                                        <li><a href="{{ path('admin_category_delete', {'id': fourthLevel.id}) }}">Delete Category</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    {% endfor %}
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+<style>
+    .category-link-name{
+        font-size: 20px;
+        padding: 3px;
+        color: #000;
+    }
+    .second-level-categories, .third-level-categories, .last-level{
+        margin-left: 30px;
+    }
+</style>
+{% endblock %}

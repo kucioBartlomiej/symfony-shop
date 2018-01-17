@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block Content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_start(form, {attr: {novalidate: 'novalidate'} }) }}
+                <div>
+                {{ form_widget(form.deliveryMethod) }}
+                </div>
+
+                <div id="parcel-method" style="display:none">
+                    <div>
+                        {{ form_widget(form.deliveryInformation) }}
+                    </div>
+
+                    <div>
+                        {{ form_widget(form.paymentMethod) }}
+                    </div>
+
+                    <div>
+                        {{ form_widget(form.informationFromUser) }}
+                    </div>
+
+                    <div>
+                        {{ form_widget(form.createAccount) }}
+                    </div>
+
+                    <div id="createAccount" style="display:none">
+                        {{ form_widget(form.createAccountInformation) }}
+                    </div>
+                </div>
+
+                <div id="store-pickup">
+                    <div>
+                        {{ form_widget(form.storePickUpInformation) }}
+                    </div>
+                </div>
+
+
+
+                <button class="button btn btn-primary btn-submt-form" type="submit">Submit</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javaScript %}
+
+    <script>
+
+    var deliveryMethod = $('#order_checkout_deliveryMethod');
+
+    function showFields(){
+        if((deliveryMethod).val() === 'store-pickup')
+        {
+            $('#store-pickup').css('display', 'block');
+            $('#parcel-method').css('display', 'none');
+        }
+        else if ((deliveryMethod).val() === 'parcel')
+        {
+            $('#parcel-method').css('display', 'block');
+            $('#store-pickup').css('display', 'none');
+        }
+    };
+
+    showFields();
+
+    deliveryMethod.change(function() {
+        showFields();
+    });
+
+    function showCreate(){
+        if($('#order_checkout_createAccount').is(':checked'))
+        {
+            $('#createAccount').css('display', 'block');
+        }
+        else
+        {
+            $('#createAccount').css('display', 'none');
+        }
+    }
+
+    $('#order_checkout_createAccount').change(function(){
+        showCreate();
+    });
+
+    showCreate();
+
+    </script>
+
+
+{% endblock %}

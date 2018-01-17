@@ -1,0 +1,6 @@
+services:
+
+    AppBundle\Picture\PictureHandler:
+        public: true
+        autowire: true
+        arguments: ["%pictures_upload_dir%"]

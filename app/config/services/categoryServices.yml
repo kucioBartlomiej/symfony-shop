@@ -1,0 +1,5 @@
+services:
+
+    AppBundle\Category\CategoryHandler:
+        public: true
+        autowire: true

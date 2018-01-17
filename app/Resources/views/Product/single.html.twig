@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block Content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 notify" style="display:none">
+                <h2>Product Added to cart</h2>
+            </div>
+            <div class="col-md-3">
+
+                {#{{ displayCategorySidebar(product.category) }}#}
+
+            </div>
+            <div class="col-md-9 single-product">
+
+                <div class="col-md-4 product-image">
+                    <img class="img-responsive" style="max-height:300px" src="{{ asset(product.image) }}" alt="">
+                </div>
+
+                <div class="col-md-8 product-info">
+                    <h2>{{product.name}}</h2>
+                    <h3>{{product.price}} PLN</h3>
+                    <div class="form-group qty">
+                        <input style="width:50px" type="text" class="form-control text-center" id="qty" value="1"><span>szt.</span>
+                    </div>
+                    <div class="btn btn-primary btn-add-to-cart">Add To Cart</div>
+                </div>
+
+                <div class="col-md-12">
+                    <hr>
+                    <h4>Description</h4>
+                    <hr>
+                    <p>{{product.description}}</p>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.container -->
+
+{% endblock %}
+
+{% block javaScript %}
+
+    <script>
+        jQuery(document).ready(function() {
+
+            $('.btn-add-to-cart').click(function(event){
+                event.preventDefault();
+
+                var quantity = $('#qty').val();
+                $.ajax({
+                    method: "POST",
+                    url: "{{ path('cart_add_product', {'id': product.id }) }}",
+                    data: { quantity: quantity }
+                })
+                    .done(function(result){
+                        $('.notify').css('display', 'block');
+                        // var data = JSON.parse(result);
+                        // $('.cart-items-count').text(data.cartCount);
+
+                    });
+            });
+
+        });
+    </script>
+
+
+{% endblock %}

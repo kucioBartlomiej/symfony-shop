@@ -1,0 +1,36 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block ContentAdmin %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'} }) }}
+            {{form_widget(form)}}
+            <button class="button btn btn-primary btn-submt-form" type="submit">Filter</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+                {% for stock in pagination %}
+                    <tr>
+                        <td>{{ stock.id }}</td>
+                        <td>{{ stock.product.name }}</td>
+                        <td>{{ stock.quantity }}</td>
+                        <td><a class="btn btn-primary" href="{{ path('admin_stock_update', {'id': stock.id}) }}">Change Quantity</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="row pagination pull-right">
+        {{  knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

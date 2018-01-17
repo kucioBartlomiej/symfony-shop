@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block Content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'} }) }}
+            {{form_widget(form)}}
+            <button class="button btn btn-primary btn-submt-form" type="submit">Filter</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+            <div class=" row product-list">
+                {% if pagination|length > 0 %}
+                    {% for product in pagination %}
+                        {#<a class="product-wrapper" href="{{ path('product_show_single', {'id': product.id}) }}">#}
+                        <div class="col-md-4 text-center">
+
+                            <div class="product-box">
+                                <img class="img-responsive" style="max-height:180px;margin:0 auto;" src="{{ asset(product.image) }}" alt="">
+                                <p>{{product.name}}</p>
+                                <h4>{{product.price}} PLN</h4>
+                                <a href="{{ path('product_show_single', {'id': product.id}) }}" class="btn btn-primary">Show Product</a>
+                            </div>
+                            <hr>
+                        </div>
+                        {#</a>#}
+                    {% endfor %}
+                {% else %}
+                    <h1 class="text-center">No Products</h1>
+                {% endif %}
+            </div>
+            <div class="row pagination pull-right">
+                {{  knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

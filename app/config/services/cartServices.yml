@@ -1,0 +1,5 @@
+services:
+
+    AppBundle\Cart\CartManager:
+        public: true
+        autowire: true

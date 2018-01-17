@@ -1,0 +1,43 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+
+{% block ContentAdmin %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_start(form, {attr: {novalidate: 'novalidate'} }) }}
+                {{form_widget(form)}}
+                <button class="button btn btn-primary btn-submt-form" type="submit">Filter</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-primary" href="{{ path('admin_product_create') }}">Create Product</a>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    {% for product in pagination %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.category.name }}</td>
+                        <td>{{ product.status }}</td>
+                        <td><a class="btn btn-primary" href="{{ path('admin_product_edit', {'id': product.id}) }}">Edit Product</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="row pagination pull-right">
+            {{  knp_pagination_render(pagination) }}
+        </div>
+    </div>
+
+{% endblock %}
+
