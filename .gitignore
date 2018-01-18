@@ -16,5 +16,5 @@
 /vendor/
 /web/bundles/
 /.idea/
-/web/uploads/products/
+/web/uploads/products/*
 !/web/uploads/products/.gitkeep
