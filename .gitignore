@@ -18,3 +18,5 @@
 /.idea/
 /src/AppBundle/DataFixtures/*
 !/src/AppBundle/DataFixtures/.gitkeep
+/web/uploads/products/
+!/web/uploads/products/.gitkeep
