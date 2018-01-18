@@ -88,8 +88,10 @@ class StorePickUpInformation
         return $this->phone;
     }
 
-
-    public function setPhone(PhoneNumber $phone)
+    /**
+     * @param PhoneNumber|null $phone
+     */
+    public function setPhone($phone)
     {
         $this->phone = $phone;
     }

@@ -180,7 +180,9 @@ class DeliveryInformation {
         return $this->phone;
     }
 
-
+    /**
+     * @param PhoneNumber|null $phone
+     */
     public function setPhone($phone)
     {
         $this->phone = $phone;
