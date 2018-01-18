@@ -148,6 +148,8 @@ class Order {
         $this->subTotalPrice = $subTotalPrice;
         $this->createAccountInformation = new OrderCreateAccount();
         $this->products = $products;
+        $this->deliveryInformation = new DeliveryInformation();
+        $this->storePickUpInformation = new StorePickUpInformation();
     }
 
 
