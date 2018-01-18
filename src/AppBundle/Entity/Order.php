@@ -144,7 +144,7 @@ class Order {
         ArrayCollection $products
     ) {
         $this->totalPrice = $totalPrice;
-        $this->deliveryMethod = $deliveryMethod;
+        $this->setDeliveryMethod($deliveryMethod);
         $this->subTotalPrice = $subTotalPrice;
         $this->createAccountInformation = new OrderCreateAccount();
         $this->products = $products;
